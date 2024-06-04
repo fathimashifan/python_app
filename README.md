@@ -1,5 +1,4 @@
-# LMS - Learning Management System
-Started Jun 23, 2023
+
 ---
 > Install Virtual Environment:
 - pip install virtualenv
