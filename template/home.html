@@ -1,0 +1,297 @@
+
+<!DOCTYPE html >
+<html lang="en" data-bs-theme="light">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<link href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/r-2.4.1/datatables.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+		* {
+			font-family: 'Roboto', sans-serif;
+		}
+		/* li:not([contenteditable="true"]),a:not([contenteditable="true"]),button:not([contenteditable="true"]){
+			transition: background-color .1s ease-in-out,border-color .1s ease-in-out;
+		} */
+		a{
+			text-decoration: none;
+			color: inherit;
+		}
+		form ul{
+			list-style: none;
+		}
+		html,
+		body {
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+		}
+
+		:root {
+			--blue: #1b9ae9;
+			--accent: #BBE3E1;
+			--white: #fefefe;
+			--grey: #eeeeee;
+			--yellow: #F2B828;
+			--red: #DC3545;
+			--darkgrey: #CFCFCF;
+			--black: #000;
+			--radius: 0px;
+			--table-radius: 8px;
+
+			--bs-primary: #1b9ae9;
+			--bs-warning: #F2B828;
+			--bs-danger: #DC3545;
+			--bs-primary-rgb: 27,154,233;
+			--bs-list-group-active-bg: #1b9ae9;
+			--bs-list-group-active-border-color: #1b9ae9;
+			--bs-border-color: #CFCFCF;
+		}
+		
+		.btn ,ul.list-group.list-group-flush.root > li.list-group-item:not(.no_ani):hover, .ani_bg:hover, .dt-button {
+			background-size: 300% 100%!important;
+			background-image: linear-gradient(to right, #1b9ae9, #1b9ae9, #04befe, #3f86ed)!important;
+			border-color: var(--blue)!important;
+			border-radius: var(--bs-border-radius-lg)!important;
+			color: #fff!important;
+			/* moz-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			-webkit-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out; */
+		}
+		.btn.text-muted {
+			pointer-events: none;
+		}
+		.btn:hover,ul.list-group.list-group-flush.root li.list-group-item:hover,.ani_bg:hover, .dt-button:hover {
+			border-color: transparent!important;
+			background-position: 100% 0!important;
+			/* moz-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			-webkit-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out; */
+		}
+		li.list-group-item.active{
+			border-radius: var(--bs-border-radius-lg);
+			--bs-list-group-active-bg: #1b9ae9;
+			--bs-list-group-active-border-color: #1b9ae9;
+		}
+		ul{
+			list-style: none;
+		}
+		li.ani_bg{
+			border: none;
+			border-bottom: 1px solid var(--darkgrey);
+		}
+		
+		.bg-primary{
+			background-color: var(--blue)!important;
+			border-color: var(--blue);
+		}
+		button:not(.btn-close), nav a.btn, a.btn.rounded-pill {
+			min-width: 130px;
+		}
+		
+	</style>
+	<style>/* thin slick looking browser scrollbars */
+		::-webkit-scrollbar {
+			width: 5px;
+			}
+			::-webkit-scrollbar-track {
+			background: transparent;
+			}
+			::-webkit-scrollbar-thumb {
+			background-color: rgba(155, 155, 155, 0.5);
+			border-radius: 20px;
+			border: transparent;
+			}
+
+            /* Centering the button */
+		.center-button {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+	<style>/* Floating Label Costumize */
+		.form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control:focus
+		{
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+		.form-floating>.form-control{
+			padding: 0px;
+			padding-left: 1em;
+		}
+		.form-floating>label{
+			top:-8px;
+			padding: 0.78rem 0.7rem;
+			color: rgba(var(--bs-body-color-rgb),.65);
+		}
+		.form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label{
+			top:-15px;
+		}
+		.form-floating>.form-control{
+			height: 2.2em;
+			min-height: 1em;
+			line-height: 1;
+		}
+		.was-validated .form-control:valid,
+		.was-validated .form-control:invalid,
+		.was-validated .form-select:valid,
+		.was-validated .form-select:invalid
+		{
+			border-color: #000;
+		}
+
+		.was-validated .form-control:invalid ~ label{
+			color: var(--bs-form-invalid-border-color);
+		}
+		.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+			/* border-color: var(--bs-form-invalid-border-color); */
+			border-color: #000;
+			box-shadow: none;
+			/* box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb),.25); */
+		}
+        .modal-header {
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+    
+        
+        
+
+	</style>
+	
+	<title>MOVIE</title>
+</head>
+
+<body>
+    <body>
+        <div class="center-button">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Click me here
+            </button>
+        </div>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">MOVIES</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section id="bundle">
+                            <article class="container">
+                                <div class="course_thumbnails mt-3">
+                                    <div class="row">
+                                        
+                                        {% if movies %}
+                                                {% for bun in movies %}
+                                                    
+                                                        <div class="product col-12 col-sm-6 col-md-6 col-xl-4">
+                                                   
+                                                        <div class="card h-60 border-0 px-5 px-sm-0 mb-4">
+                                                            <div class="position-relative">
+                                                                <!-- Display the first marketing image as the main image -->
+                                                                <!-- section_bundle.html -->
+                                                                <img src="..{{ bun.image}}" class="img-fluid img-thumbnail bg-primary w-100" title="." style="width: 300px;">
+                                                                
+                                                                <!-- Display a circle with the count of marketing images -->
+                                                               
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h6 class="card-title" style="font-size: 1.25rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">{{bun.movie_name}}</h6>
+                                                            </div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                        {% else %}
+                                                <!-- Display message when no courses exist -->
+                                                <div class="col-12 text-center">
+                                                    <h3>There are no movies existing.</h3>
+                                                </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                        <!-- Add more content as needed -->
+                    </div>
+                    <div class="modal-footer">
+                        
+                        {% csrf_token %}
+                        <button id="postButton" type="button" class="btn btn-primary">INPUT DATA</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+     <!-- Your script tags -->
+     <script>
+        $(document).ready(function() {
+            $('#postButton').click(function() {
+                var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+                $.ajax({
+                    url: '/movie_display',
+                    type: 'POST',
+                    data: {
+                        // Your POST data here
+                    },
+                    headers: {
+                        "X-CSRFToken": csrftoken
+                    },
+                    success: function(data) {
+                        // Display success alert
+                        $('#successAlert').show();
+                        $('#failureAlert').hide();
+                    },
+                    error: function(xhr, status, error) {
+                        // Display failure alert
+                        $('#failureAlert').show();
+                        $('#successAlert').hide();
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Place these alert divs wherever you want the alerts to appear -->
+    <div id="successAlert" class="alert alert-success" style="display: none;">
+        Success! Movie inserted successfully.
+    </div>
+    <div id="failureAlert" class="alert alert-danger" style="display: none;">
+        Error! Failed to insert movie.
+    </div>
+    
+        
+        <!-- Place these alert divs wherever you want the alerts to appear -->
+        <div id="successAlert" class="alert alert-success" style="display: none;">
+            Success! Movie inserted successfully.
+        </div>
+        <div id="failureAlert" class="alert alert-danger" style="display: none;">
+            Error! Failed to insert movie.
+        </div>
+        
+        
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/r-2.4.1/datatables.min.js"></script>
+    </body>
+    
+
+
+</html>
