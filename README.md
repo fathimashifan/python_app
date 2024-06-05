@@ -31,76 +31,50 @@
 - python manage.py migrate <APP>
 - python manage.py migrate <APP> --database=digixlog
 ---
-> Select entire line in VS Code
 
-```^print.*(\r?\n\s*)*```
-- select entire line starting with print
 
-```^\[.*(\r?\n\s*)*```
-- select entire line starting with [
 
-```print.*\n```
-- select entire line having the word print
 
----
-> How to print the location
+______________________API______________________
 
-``` print("\033[m\033[0;30;47m File \""+ f"{__file__}\", line " + str(inspect.currentframe().f_lineno) + " : def " + sys._getframe(0).f_code.co_name + "\033[m")```
 
-<https://www.instructables.com/Printing-Colored-Text-in-Python-Without-Any-Module/>
 
-```\033[32m" + "\033[m```
-```\033[37;0;40m" + "\033[m```
+>to add new movie 
 
-```\033[code;code;codem  # put 'm' at the last```
 
-```\033[code;codem  # use semicolon to use more than 1 code```
+http://127.0.0.1:8000/movie_display_create_update
 
-```\033[codem```
+set headers:
 
-```\033[m   # reset```
+Content-Type header as multipart/form-data
 
-```print(f"\u001b]8;;{__file__}:140\u001b\\{'TRANSACTION LIMIT ORDER BEGINS'}\u001b]8;;\u001b\\")```
 
->> <span style="text-decoration:underline">TRANSACTION LIMIT ORDER BEGINS</span>
+Set body:
+{"movie_name":"TITANIC",
+'image':   upload from your local system
+}
 
-```import sys,inspect```
 
-```print("\033[m\033[0;30;47m File \""+ f"{__file__}\", line " + str(inspect.currentframe().f_lineno) + " : def " + sys._getframe(0).f_code.co_name + "\033[m")```
 
->> <span style="color: black;background-color:white;"> File "D:\Projects\Python\lms\course_management\course_interact.py", line 152 : def get_create_content </span>
+>to update existing movie
 
-```print("\033[m\033[0;37;41m File \""+ f"{__file__}\", line " + str(inspect.currentframe().f_lineno) + " : def " + sys._getframe(0).f_code.co_name + "\033[m")```
+http://127.0.0.1:8000/movie_display_create_update
 
->> <span style="color: white;background-color:red;"> File "D:\Projects\Python\lms\course_management\course_interact.py", line 152 : def get_create_content </span>
+set headers:
 
----
-> Print with only just to change the color
+Content-Type header as multipart/form-data
 
-```print('\x1b[31mThis text become red')```
 
->> <span style="color: red">This text become red</span>
+Set body:
 
-```print('\x1b[31mThis text become red\x1b[m but this one is not red')```
+{
+    "display_id":1,
+    
+    "movie_name":"TITANIC",
+    'image':   upload from your local system,
 
->> <span style="color: red">This text become red</span> but this one is not red
+}
 
----
-Text color | Code | Text style | Code | Background color | Code
- ------------ | ------------- | ------------ | ------------- | ------------ | -------------
-Black | 30 | No effect | 0 | Black | 40
-Red | 31 | Bold | 1 | Red | 41
-Green | 32 | Underline | 2 | Green | 42
-Yellow | 33 | Negative1 | 3 | Yellow | 43
-Blue | 34 | Negative2 | 5 | Blue | 44
-Purple | 35 | |  | Purple | 45
-Cyan | 36 | | |  Cyan | 46
-White | 37 | |  | White | 47
 
-> XHTML
-- rename your .html to .xhtml then apply the below tag changes.
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-```
+
+
